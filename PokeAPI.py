@@ -148,7 +148,7 @@ for name in pokemon_names:
     # Create a button for each Pokémon name and add it to the scrollable frame
     # text=name sets the button text to the Pokémon name
     # font=("Arial", 8) sets the font and size
-    # command=lambda n=name: fetch_sprite(n) this captures the name of the button in 'n' passes it to fetch_sprite() as an argument
+    # command=lambda n=name: fetch_sprite(n) this captures the name of the button in 'n' passes it to search_pokemon() as an argument
     # anchor='w' padx=10 and pady=2 sets anchor to the left (west), add horizontal and vertical padding
     tk.Button(scrollable_frame, text=name, font=("Arial", 8), width=20, bg='deep sky blue', command=lambda n=name: search_pokemon(n) ).pack(anchor='w', padx=10, pady=1)
 
