@@ -15,8 +15,6 @@ def setup_ui(root):
     container_frame = tk.Frame(root)
 
     # Pack the container frame so it fills all space and expands with the window
-    # fill='both' means fill horizontally and vertically
-    # expand=True means grow as needed when the window resizes
     container_frame.pack(fill='both', expand=True)
 
     # Get the width of the screen in pixels
@@ -39,7 +37,6 @@ def setup_ui(root):
     search_frame = tk.Frame(right_frame, bg='red3')
     search_frame.pack(pady=10)
 
-    # Creates a text input box for the user to enter in a pokemons name or dex number
     # Entry box inside the search_frame
     enterPokeNameBox = tk.Entry(search_frame, width=20, font=(font_style, 12), justify='center')
     enterPokeNameBox.pack(side='left', padx=(0, 5))  # slight padding to the right
@@ -67,27 +64,21 @@ def setup_ui(root):
     canvas.pack(side='left', fill='both', expand=True)
 
     # Create a vertical scrollbar and attach it to the canvas
-    # orient='vertical' means the scrollbar is vertical
-    # command=canvas.yview connects scrollbar movement to the canvas's vertical view
     scrollbar = ttk.Scrollbar(right_frame, orient='vertical', command=canvas.yview)
 
     # Pack the scrollbar on the right side of the right_frame, stretching vertically
     scrollbar.pack(side='right', fill='y')
 
     # Configure the canvas to update the scrollbar when it's scrolled
-    # yscrollcommand=scrollbar.set tells the canvas to sync its scroll position with the scrollbar
-    # sets height of canvas to 1000px
     canvas.configure(yscrollcommand=scrollbar.set, height= 1000)
 
     # When the canvas is resized (on a <Configure> event), update the scrollable region
-    # canvas.bbox('all') returns the bounding box of all items in the canvas
     canvas.bind('<Configure>', lambda e: canvas.configure(scrollregion=canvas.bbox('all')))
 
     # Create a Frame inside the canvas which will hold all the scrollable content (labels/buttons/etc.)
     scrollable_frame = tk.Frame(canvas, bg='red2', highlightthickness=0)
 
     # Add the scrollable_frame to the canvas at the top-left (anchor='nw' = northwest)
-    # (0, 0) sets its position inside the canvas
     canvas.create_window((0, 0), window=scrollable_frame, anchor='nw')
 
     # Update the canvas scroll region every time the scrollable frame changes size
